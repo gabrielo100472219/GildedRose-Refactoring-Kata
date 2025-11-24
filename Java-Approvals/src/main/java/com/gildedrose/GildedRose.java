@@ -24,7 +24,7 @@ class GildedRose {
 		if (!isNormalItem(item) && item.quality < 50) {
 			item.quality = item.quality + 1;
 
-			if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+			if (isBackstagePasses(item)) {
 				if (item.sellIn < 11 && item.quality < 50) {
 					item.quality = item.quality + 1;
 				}
@@ -41,7 +41,7 @@ class GildedRose {
 			if (item.name.equals("Aged Brie") && item.quality < 50) {
 				item.quality = item.quality + 1;
 			}
-			if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+			if (isBackstagePasses(item)) {
 				item.quality = 0;
 			}
 
@@ -51,8 +51,12 @@ class GildedRose {
 		}
 	}
 
+	private static boolean isBackstagePasses(Item item) {
+		return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+	}
+
 	private static boolean isNormalItem(Item item) {
-		return !item.name.equals("Aged Brie") && !item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+		return !item.name.equals("Aged Brie") && !isBackstagePasses(item);
 	}
 
 	private static boolean isSulfuras(Item item) {
