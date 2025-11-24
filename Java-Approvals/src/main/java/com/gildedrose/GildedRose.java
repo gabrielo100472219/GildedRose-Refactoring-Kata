@@ -38,7 +38,7 @@ class GildedRose {
 		item.sellIn = item.sellIn - 1;
 
 		if (item.sellIn < 0) {
-			if (item.name.equals("Aged Brie") && item.quality < 50) {
+			if (isAgedBrie(item) && item.quality < 50) {
 				item.quality = item.quality + 1;
 			}
 			if (isBackstagePasses(item)) {
@@ -51,12 +51,16 @@ class GildedRose {
 		}
 	}
 
+	private static boolean isAgedBrie(Item item) {
+		return item.name.equals("Aged Brie");
+	}
+
 	private static boolean isBackstagePasses(Item item) {
 		return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
 	}
 
 	private static boolean isNormalItem(Item item) {
-		return !item.name.equals("Aged Brie") && !isBackstagePasses(item);
+		return !isAgedBrie(item) && !isBackstagePasses(item);
 	}
 
 	private static boolean isSulfuras(Item item) {
