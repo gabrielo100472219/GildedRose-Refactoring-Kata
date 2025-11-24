@@ -21,6 +21,7 @@ class GildedRose {
 		if (isNormalItem(item) && item.quality > 0) {
 			item.quality = item.quality - 1;
 		}
+
 		if (!isNormalItem(item) && item.quality < 50) {
 			item.quality = item.quality + 1;
 
@@ -37,17 +38,20 @@ class GildedRose {
 
 		item.sellIn = item.sellIn - 1;
 
-		if (item.sellIn < 0) {
-			if (isAgedBrie(item) && item.quality < 50) {
-				item.quality = item.quality + 1;
-			}
-			if (isBackstagePasses(item)) {
-				item.quality = 0;
-			}
+		if (item.sellIn >= 0) {
+			return;
+		}
 
-			if (isNormalItem(item) && item.quality > 0) {
-				item.quality = item.quality - 1;
-			}
+		if (isAgedBrie(item) && item.quality < 50) {
+			item.quality = item.quality + 1;
+		}
+
+		if (isBackstagePasses(item)) {
+			item.quality = 0;
+		}
+
+		if (isNormalItem(item) && item.quality > 0) {
+			item.quality = item.quality - 1;
 		}
 	}
 
