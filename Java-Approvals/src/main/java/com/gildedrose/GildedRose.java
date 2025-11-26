@@ -18,6 +18,8 @@ class GildedRose {
 			return;
 		}
 
+		item.sellIn--;
+
 		if (isAgedBrie(item)) {
 			updateAgedBrie(item);
 			return;
@@ -28,17 +30,15 @@ class GildedRose {
 			return;
 		}
 
-		if (isNormalItem(item) && item.quality > 0) {
+		if (item.quality > 0) {
 			item.quality = item.quality - 1;
 		}
-
-		item.sellIn = item.sellIn - 1;
 
 		if (item.sellIn >= 0) {
 			return;
 		}
 
-		if (isNormalItem(item) && item.quality > 0) {
+		if (item.quality > 0) {
 			item.quality = item.quality - 1;
 		}
 	}
@@ -47,8 +47,6 @@ class GildedRose {
 		if (item.quality < 50) {
 			item.quality = item.quality + 1;
 		}
-
-		item.sellIn--;
 
 		if (item.sellIn >= 0) {
 			return;
@@ -63,19 +61,13 @@ class GildedRose {
 		if (item.quality < 50) {
 			item.quality = item.quality + 1;
 
-			if (item.sellIn < 11 && item.quality < 50) {
+			if (item.sellIn < 10 && item.quality < 50) {
 				item.quality = item.quality + 1;
 			}
 
-			if (item.sellIn < 6 && item.quality < 50) {
+			if (item.sellIn < 5 && item.quality < 50) {
 				item.quality = item.quality + 1;
 			}
-		}
-
-		item.sellIn--;
-
-		if (item.sellIn >= 0) {
-			return;
 		}
 
 		if (item.sellIn < 0) {
@@ -89,10 +81,6 @@ class GildedRose {
 
 	private static boolean isBackstagePasses(Item item) {
 		return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
-	}
-
-	private static boolean isNormalItem(Item item) {
-		return !isAgedBrie(item) && !isBackstagePasses(item);
 	}
 
 	private static boolean isSulfuras(Item item) {
