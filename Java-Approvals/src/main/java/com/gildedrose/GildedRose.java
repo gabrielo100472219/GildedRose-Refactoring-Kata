@@ -30,6 +30,11 @@ class GildedRose {
 			return;
 		}
 
+		if (isConjuredItem(item)) {
+			updateConjuredItem(item);
+			return;
+		}
+
 		updateNormalItem(item);
 	}
 
@@ -74,12 +79,32 @@ class GildedRose {
 		}
 	}
 
+	private static void updateConjuredItem(Item item) {
+		if (item.quality <= 0) {
+			return;
+		}
+
+		item.quality -= 2;
+
+		if (item.sellIn < 0) {
+			item.quality -= 4;
+		}
+
+		if (item.quality < 0) {
+			item.quality = 0;
+		}
+	}
+
 	private static boolean isAgedBrie(Item item) {
 		return item.name.equals("Aged Brie");
 	}
 
 	private static boolean isBackstagePasses(Item item) {
 		return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+	}
+
+	private static boolean isConjuredItem(Item item) {
+		return item.name.startsWith("Conjured");
 	}
 
 	private static boolean isSulfuras(Item item) {
