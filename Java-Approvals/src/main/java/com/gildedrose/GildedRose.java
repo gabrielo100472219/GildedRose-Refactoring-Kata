@@ -59,16 +59,18 @@ class GildedRose {
 			return;
 		}
 
-		if (item.quality < 50) {
+		if (item.quality >= 50) {
+			return;
+		}
+
+		item.quality++;
+
+		if (item.sellIn < 10 && item.quality < 50) {
 			item.quality++;
+		}
 
-			if (item.sellIn < 10 && item.quality < 50) {
-				item.quality++;
-			}
-
-			if (item.sellIn < 5 && item.quality < 50) {
-				item.quality++;
-			}
+		if (item.sellIn < 5 && item.quality < 50) {
+			item.quality++;
 		}
 	}
 
