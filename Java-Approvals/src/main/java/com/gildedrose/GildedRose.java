@@ -54,6 +54,10 @@ class GildedRose {
 	}
 
 	private static void updateBackstagePasses(Item item) {
+		if (item.sellIn < 0) {
+			item.quality = 0;
+			return;
+		}
 
 		if (item.quality < 50) {
 			item.quality = item.quality + 1;
@@ -65,10 +69,6 @@ class GildedRose {
 			if (item.sellIn < 5 && item.quality < 50) {
 				item.quality = item.quality + 1;
 			}
-		}
-
-		if (item.sellIn < 0) {
-			item.quality = 0;
 		}
 	}
 
