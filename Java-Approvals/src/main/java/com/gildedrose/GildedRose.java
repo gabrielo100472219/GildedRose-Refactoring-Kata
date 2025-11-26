@@ -48,10 +48,6 @@ class GildedRose {
 			item.quality = item.quality + 1;
 		}
 
-		if (item.sellIn >= 0) {
-			return;
-		}
-
 		if (item.sellIn < 0 && item.quality < 50) {
 			item.quality++;
 		}
