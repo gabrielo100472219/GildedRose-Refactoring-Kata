@@ -35,17 +35,17 @@ class GildedRose {
 
 	private static void updateNormalItem(Item item) {
 		if (item.quality > 0) {
-			item.quality = item.quality - 1;
+			item.quality--;
 		}
 
 		if (item.sellIn < 0 && item.quality > 0) {
-			item.quality = item.quality - 1;
+			item.quality--;
 		}
 	}
 
 	private static void updateAgedBrie(Item item) {
 		if (item.quality < 50) {
-			item.quality = item.quality + 1;
+			item.quality++;
 		}
 
 		if (item.sellIn < 0 && item.quality < 50) {
@@ -60,14 +60,14 @@ class GildedRose {
 		}
 
 		if (item.quality < 50) {
-			item.quality = item.quality + 1;
+			item.quality++;
 
 			if (item.sellIn < 10 && item.quality < 50) {
-				item.quality = item.quality + 1;
+				item.quality++;
 			}
 
 			if (item.sellIn < 5 && item.quality < 50) {
-				item.quality = item.quality + 1;
+				item.quality++;
 			}
 		}
 	}
