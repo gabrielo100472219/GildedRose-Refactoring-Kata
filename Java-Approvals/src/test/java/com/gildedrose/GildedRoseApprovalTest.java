@@ -12,26 +12,16 @@ import java.io.PrintStream;
 @UseReporter(DiffReporter.class)
 public class GildedRoseApprovalTest {
 
-    @Test
-    public void foo() {
+	@Test
+	public void thirtyDays() {
 
-        Item[] items = new Item[]{new Item("foo", 0, 0)};
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
+		final ByteArrayOutputStream fakeoutput = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(fakeoutput));
+		System.setIn(new ByteArrayInputStream("a\n".getBytes()));
 
-        Approvals.verifyAll("Items", items);
-    }
+		Program.main();
+		final String output = fakeoutput.toString();
 
-    @Test
-    public void thirtyDays() {
-
-        ByteArrayOutputStream fakeoutput = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(fakeoutput));
-        System.setIn(new ByteArrayInputStream("a\n".getBytes()));
-
-        Program.main();
-        String output = fakeoutput.toString();
-
-        Approvals.verify(output);
-    }
+		Approvals.verify(output);
+	}
 }
