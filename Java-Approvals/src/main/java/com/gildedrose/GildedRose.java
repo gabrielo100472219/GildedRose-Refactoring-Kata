@@ -54,6 +54,7 @@ class GildedRose {
 	}
 
 	private static void updateBackstagePasses(Item item) {
+
 		if (item.quality < 50) {
 			item.quality = item.quality + 1;
 
